@@ -33,7 +33,7 @@ _Получение всех записей о бронировании._
 **_Возможна фильтрация по параметрам_**
 ##### Синтаксис
 ```go
-    GetAll(ctx context.Context, params dto.RequestParams)
+    GetAll(ctx, params)
 ```
 ##### Параметры на вход
 - **сtx** - _context.Context_ - Http Context
