@@ -35,9 +35,6 @@ func (c *Connection) Connect(config config.DBConfig, ctx context.Context) (conne
 }
 
 func (c *Connection) Disconnect(ctx context.Context) error {
-	//err := c.db.D
-	//if err != nil {
-	//	return err
-	//}
+	c.db.Close()
 	return nil
 }
