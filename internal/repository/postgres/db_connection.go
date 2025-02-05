@@ -1,12 +1,12 @@
 package postgres
 
 import (
+	"actualizer/internal/common/config"
+	"actualizer/internal/common/connection"
 	"fmt"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/net/context"
-	"seatPlanner/internal/common/config"
-	"seatPlanner/internal/common/connection"
 )
 
 type Connection struct {

@@ -1,8 +1,7 @@
 package main
 
 import (
-	_ "seatPlanner/docs"
-	"seatPlanner/internal/app"
+	"actualizer/internal/app"
 )
 
 // @title           Actualizer

@@ -1,9 +1,11 @@
 package repository
 
 import (
+	"actualizer/internal/common/config"
+	"actualizer/internal/common/connection"
+	"actualizer/internal/repository/interfaces"
+	"actualizer/internal/repository/postgres"
 	"golang.org/x/net/context"
-	"seatPlanner/internal/common/config"
-	"seatPlanner/internal/common/connection"
 )
 
 type DBConnection interface {
@@ -12,8 +14,11 @@ type DBConnection interface {
 }
 
 type Repo struct {
+	interfaces.BookingRepo
 }
 
 func New(cnt connection.Connection) *Repo {
-	return &Repo{}
+	return &Repo{
+		BookingRepo: postgres.NewBookingRepo(cnt.Pool),
+	}
 }

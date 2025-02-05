@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"actualizer/internal/handler/scheduler"
+	"actualizer/internal/service"
 	"fmt"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -10,10 +12,13 @@ import (
 )
 
 type Handler struct {
+	schedulerHandler *scheduler.Handler
 }
 
-func New() *Handler {
-	return &Handler{}
+func New(srvs service.Scheduler) *Handler {
+	return &Handler{
+		schedulerHandler: scheduler.NewHandler(srvs),
+	}
 }
 
 func (h *Handler) InitRoutes() *gin.Engine {
@@ -34,9 +39,18 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
-	api := router.Group("/api")
+	api := router.Group("/actualizer")
 	{
+		service := api.Group("/service")
+		{
+			service.GET("/start", h.schedulerHandler.Start)
+			service.GET("/stop", h.schedulerHandler.Stop)
+		}
 
+		booking := api.Group("/booking")
+		{
+			booking.GET("/cancel")
+		}
 	}
 
 	return router
