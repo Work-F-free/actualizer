@@ -30,6 +30,10 @@ func (s *SchedulerService) Start() error {
 }
 
 func (s *SchedulerService) Stop() error {
+	if !s.started {
+		return errors.New("scheduler not started")
+	}
+
 	s.started = false
 	logrus.Info("Scheduler stopped")
 	return nil

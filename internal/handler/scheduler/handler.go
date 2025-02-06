@@ -18,6 +18,16 @@ func NewHandler(srvs service.Scheduler) *Handler {
 	}
 }
 
+// Start
+// @Summary      Start Service
+// @Description  Service starts scheduler
+// @Tags         Service
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}   responses.SuccessResponse
+// @Failure      400  {object}  errors.ErrorResponse
+// @Failure      500  {object}  errors.ErrorResponse
+// @Router       /actualizer/service/start [get]
 func (h *Handler) Start(c *gin.Context) {
 	err := h.Scheduler.Start()
 	if err != nil {
@@ -35,6 +45,16 @@ func (h *Handler) Start(c *gin.Context) {
 	})
 }
 
+// Stop
+// @Summary      Stop Service
+// @Description  Service stops scheduler
+// @Tags         Service
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}   responses.SuccessResponse
+// @Failure      400  {object}  errors.ErrorResponse
+// @Failure      500  {object}  errors.ErrorResponse
+// @Router       /actualizer/service/stop [get]
 func (h *Handler) Stop(c *gin.Context) {
 	err := h.Scheduler.Stop()
 	if err != nil {

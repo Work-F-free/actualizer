@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "actualizer/docs"
 	"actualizer/internal/app"
 )
 
@@ -11,7 +12,6 @@ import (
 // @contact.name   Koreshkov Daniil
 // @contact.email  danielkoreshkov@gmail.com
 
-// @host      localhost:8081
 // @BasePath /
 func main() {
 	err := app.Run()

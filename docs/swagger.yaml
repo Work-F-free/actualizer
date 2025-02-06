@@ -1,0 +1,73 @@
+basePath: /
+definitions:
+  errors.ErrorResponse:
+    properties:
+      code:
+        type: integer
+      details: {}
+      error:
+        type: string
+    type: object
+  responses.SuccessResponse:
+    properties:
+      data: {}
+      message:
+        type: string
+      status:
+        type: integer
+    type: object
+info:
+  contact:
+    email: danielkoreshkov@gmail.com
+    name: Koreshkov Daniil
+  description: Service for storing Coworking Plan Data
+  title: Actualizer
+  version: "1.0"
+paths:
+  /actualizer/service/start:
+    get:
+      consumes:
+      - application/json
+      description: Service starts scheduler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Start Service
+      tags:
+      - Service
+  /actualizer/service/stop:
+    get:
+      consumes:
+      - application/json
+      description: Service stops scheduler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      summary: Stop Service
+      tags:
+      - Service
+swagger: "2.0"

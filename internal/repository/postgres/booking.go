@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-const bookingTable = ""
+const bookingTable = "booking"
 
 type BookingRepo struct {
 	db *pgxpool.Pool
@@ -117,10 +117,11 @@ func (s *BookingRepo) Delete(ctx context.Context, uuid uuid.UUID) error {
 func (s *BookingRepo) Update(ctx context.Context, Booking *dto.Booking, uuid uuid.UUID) error {
 	updateQuery := s.qb.Update(bookingTable).
 		SetMap(map[string]any{
-			"seat_id":       Booking.SeatId,
-			"expired":       Booking.Expired,
-			"from_datetime": Booking.FromDateTime,
-			"to_datetime":   Booking.ToDateTime,
+			"seat_id":         Booking.SeatId,
+			"expired":         Booking.Expired,
+			"booked_by_phone": Booking.BookedByPhone,
+			"from_datetime":   Booking.FromDateTime,
+			"to_datetime":     Booking.ToDateTime,
 		}).
 		Where(sq.Eq{"seat_id": uuid})
 
